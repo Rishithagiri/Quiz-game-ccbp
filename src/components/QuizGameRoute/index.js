@@ -10,7 +10,8 @@ const QuizGameRoute = () => {
   const [activeQuestionIndex, setActiveQuestionIndex] = useState(0)
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(-1)
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0)
-  const [setQuizFinished] = useState(false)
+  // eslint-disable-next-line
+  const [quizFinished, setQuizFinished] = useState(false)
   const [timer, setTimer] = useState(15)
   const history = useHistory()
   const timerRef = useRef(null)
@@ -74,6 +75,7 @@ const QuizGameRoute = () => {
 
   useEffect(() => {
     fetchQuizQuestions()
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
@@ -83,6 +85,7 @@ const QuizGameRoute = () => {
     return () => {
       clearInterval(timerRef.current)
     }
+    // eslint-disable-next-line
   }, [apiStatus, activeQuestionIndex])
 
   const renderLoadingView = () => (
@@ -144,7 +147,7 @@ const QuizGameRoute = () => {
       setSelectedAnswerIndex(-1)
       setTimer(15)
     } else {
-      setQuizFinished(true)
+      setQuizFinished(true) // Update the state to indicate quiz is finished
       history.push({
         pathname: '/game-results',
         state: {
@@ -160,6 +163,7 @@ const QuizGameRoute = () => {
     if (timer === 0 && selectedAnswerIndex === -1) {
       handleNextQuestion()
     }
+    // eslint-disable-next-line
   }, [timer])
 
   const renderQuiz = () => {
